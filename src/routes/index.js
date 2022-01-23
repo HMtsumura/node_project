@@ -31,6 +31,6 @@ router.post('/delete', async function(req, res){
   if(task){
     await task.destroy();
   }
-  res.redirect();
+  res.redirect('/');
 });
 module.exports = router;

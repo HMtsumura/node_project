@@ -7,7 +7,7 @@ block content
     each t in tasks
       li
         form(action="update" method="post")
-          input(type='hidden' name='id', value=t.id)
+          input(type='hidden' name='id' value=t.id)
           input(
             type='checkbox'
             name='done'
@@ -15,13 +15,12 @@ block content
             onclick="this.closest('form').submit();"
           )
 
-          span.task= t.task 
+        span.task= t.task 
 
-          form(action="delete" method="post")
-            input(type='hidden' name='id' value=t.id)
-            button.delete X
-
-div.newtask
-  form(action="create" method="post")
-    input(type='text' name='task')
-    button(type='submit') Add
+        form(action="delete" method="post")
+          input(type='hidden' name='id' value=t.id)
+          button.delete X
+  div.newtask
+    form(action="create" method="post")
+      input(type='text' name='task')
+      button(type='submit') Add
