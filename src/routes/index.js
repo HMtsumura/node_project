@@ -3,16 +3,19 @@ const router = express.Router();
 const db = require('../models');
 
 /* GET home page. */
-router.get('/', async function(req, res, next) {
+router.get('/', async function (req, res, next) {
   const userId = req.session.userid;
   const isAuth = Boolean(userId);
-  console.log('isAuth:' + isAuth); 
+  console.log('isAuth:' + isAuth);
 
   const tasks = await db.Task.findAll();
-  res.render('index', { title: 'Express', tasks });
+  res.render('index', { title: 'Express', tasks, isAuth: isAuth });
 });
 
-router.post('/create', async function(req, res){
+router.post('/create', async function (req, res) {
+  const userId = req.session.userid;
+  const isAuth = Boolean(userId);
+
   const newTask = db.Task.build({
     task: req.body.task,
     done: false
@@ -21,18 +24,18 @@ router.post('/create', async function(req, res){
   res.redirect('/');
 });
 
-router.post("/update", async function(req, res){
+router.post("/update", async function (req, res) {
   const task = await db.Task.findByPk(req.body.id);
-  if(task){
+  if (task) {
     task.done = !!(req.body.done);
     await task.save();
   }
   res.redirect('/');
 });
 
-router.post('/delete', async function(req, res){
+router.post('/delete', async function (req, res) {
   const task = await db.Task.findByPk(req.body.id);
-  if(task){
+  if (task) {
     await task.destroy();
   }
   res.redirect('/');
