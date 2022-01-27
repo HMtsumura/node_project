@@ -4,6 +4,8 @@ const express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
+const cookieSession = require('cookie-session');
+const secret = 'secretCuisine123';
 
 const indexRouter = require('./routes/index');
 const usersRouter = require('./routes/users');
@@ -12,6 +14,14 @@ const signinRouter = require('./routes/signin');
 
 
 const app = express();
+
+app.use(
+  cookieSession({
+    name: 'session',
+    keys: [secret],
+    maxAge: 24*60*60*1000,
+  })
+);
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));

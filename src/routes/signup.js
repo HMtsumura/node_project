@@ -14,7 +14,7 @@ router.post('/', async function(req, res, next){
     const user = await db.User.findAll({where: {
         name: userName
     }});
-    console.log(user);
+    console.log(user[0].id);
   if(user.length !== 0){
     res.render("signup", {
         title: "Sign up",
