@@ -9,7 +9,7 @@ router.get('/', async function (req, res, next) {
   console.log('isAuth:' + isAuth);
 
   const tasks = await db.Task.findAll();
-  res.render('index', { title: 'Express', tasks, isAuth: isAuth });
+  res.render('index', { title: 'Todo App', tasks, isAuth: isAuth });
 });
 
 router.post('/create', async function (req, res) {
