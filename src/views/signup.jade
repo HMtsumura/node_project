@@ -1,6 +1,7 @@
 extends layout
 
 block content
+    include error_message
     h1= title
         form(action="signup" method="post")
             label ユーザー名
@@ -13,4 +14,4 @@ block content
             input(required type='text' name='repassword')
             br
             button(type='submit') Sing up
-        p= errorMessage
+        

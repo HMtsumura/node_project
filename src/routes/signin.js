@@ -22,7 +22,7 @@ router.post('/', async function (req, res, next) {
     } else {
         res.render("signin", {
             title: 'Sign in',
-            errorMessage: 'ユーザーが見つかりません'
+            errorMessage: ['ユーザーが見つかりません']
         });
     }
 });

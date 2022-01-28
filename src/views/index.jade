@@ -1,6 +1,7 @@
 extends layout
 
 block content
+  include error_message
   h1= title
   if isAuth
     h2 Tasks

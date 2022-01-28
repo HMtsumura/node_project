@@ -14,11 +14,10 @@ router.post('/', async function(req, res, next){
     const user = await db.User.findAll({where: {
         name: userName
     }});
-    console.log(user[0].id);
   if(user.length !== 0){
     res.render("signup", {
         title: "Sign up",
-        errorMessage: "このユーザ名は既に使われています",
+        errorMessage: ["このユーザ名は既に使われています"],
     });
   }else if(password === repassword){
     const newUser = db.User.build({
@@ -26,11 +25,13 @@ router.post('/', async function(req, res, next){
         password: password
       });
       await newUser.save();
+      console.log(newUser.id);
+      req.session.userid = newUser.id;
       res.redirect('/');
   } else {
     res.render("signup", {
       title: "Sign up",
-      errorMessage: "パスワードが一致しません",
+      errorMessage: ["パスワードが一致しません"],
     });
   }
 });

@@ -1,0 +1,7 @@
+if Boolean(errorMessage)
+    div
+        strong Waring the form contains #{errorMessage.length} errors
+    div 
+        ul 
+            each error in errorMessage
+                li= error
