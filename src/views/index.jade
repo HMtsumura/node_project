@@ -1,6 +1,7 @@
 extends layout
 
 block content
+  include header
   include error_message
   h1= title
   if isAuth
@@ -29,7 +30,7 @@ block content
         div.newtask
           form(action="create" method="post")
             input(type='text' name='task')
-            button(type='submit') Add
+            button.btn.btn-primary(type='submit') Add
   else
     h1 Welcome to TodoApp
-    a(href="/signup") Sign up!
+    a.btn.btn-primary(href="/signup" role="button") Sign up!

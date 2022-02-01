@@ -1,8 +1,9 @@
 extends layout
 
 block content
+    include header
     include error_message
-    h1= title
+    div.container
         form(action="signin" method="post")
             label ユーザー名
             input(required type='text' name='userName')
@@ -10,4 +11,4 @@ block content
             label パスワード
             input(required type='password' name='password')
             br
-            button(type='submit') Sing in
+            input.btn.btn-primary(type='submit' value="Sign in")
