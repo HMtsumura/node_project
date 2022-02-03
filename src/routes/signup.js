@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const db = require('../models');
+const bcrypt = require('bcrypt');
 
 router.get('/', function(req, res, next){
     res.render('signup',{title: 'Sign up'});
@@ -20,9 +21,10 @@ router.post('/', async function(req, res, next){
         errorMessage: ["このユーザ名は既に使われています"],
     });
   }else if(password === repassword){
+    const hashPassword = await bcrypt.hash(password, 10);
     const newUser = db.User.build({
         name: userName,
-        password: password
+        password: hashPassword
       });
       await newUser.save();
       console.log(newUser.id);
